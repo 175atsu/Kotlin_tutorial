@@ -1,3 +1,5 @@
+//kotlinc myapp.kt -include-runtime -d myapp.jar
+//java -jar myapp.jar
 //変数
 // -val 変数変更できない
 // -var　変数変更できる
@@ -249,12 +251,12 @@ fun main(args: Array<String>) {
   val aki = Japanese()
   tom.sayHi()
   aki.sayHi()
-} */
+}
 
 //21インターフェース
 // Interface
 
-interface Sharable {
+ interface Sharable {
   // 抽象プロパティ
   val version: Double
   // 抽象メソッド
@@ -276,4 +278,95 @@ fun main(args: Array<String>) {
   val user = User()
   user.share()
   user.getInfo()
+}
+
+//22ジェネリクス
+// generics
+
+class MyInteger {
+  fun getThree(x: Int) {
+    println(x)
+    println(x)
+    println(x)
+  }
+}
+
+ class MyData<T> {
+  fun getThree(x: T) {
+    println(x)
+    println(x)
+    println(x)
+  }
+}
+
+fun main(args: Array<String>) {
+  val mi = MyInteger()
+  mi.getThree(55)
+  val i = MyData<Int>()
+  i.getThree(32)
+  val s = MyData<String>()
+  s.getThree("hello")
+}
+
+
+//23データクラス
+// data class
+
+data class Point(val x: Int, val y: Int)
+
+fun main(args: Array<String>){
+  val p1 = Point(3, 5)
+  val p2 = p1.copy()
+  val p2 = Point(3, 5)
+
+  println(p1)
+  println(if (p1 == p2) "same" else "not same")
+
+  val (x, y) = p1
+  println("$x:$y")
+} */
+
+
+//24List
+// Collection
+/*
+- List (Immutable/Mutable)
+- Set (Immutable/Mutable)
+- Map (Immutable/Mutable)
+*/
+
+/* fun main(args: Array<String>) {
+  //val sales: List<Int> = listOf(20, 30, 40)
+  //val sales = listOf(20, 30, 40)
+  val sales = mutableListOf(20, 30, 40)
+  println(sales[1]) // 30
+  sales[1] = 50
+  println(sales.size) // 3
+  for (sale in sales) {
+    println(sale)
+  }
+} */
+
+//25Setを操作する
+// Collection
+/*
+- List (Immutable/Mutable)
+- Set (Immutable/Mutable)
+- Map (Immutable/Mutable)
+*/
+
+fun main(args: Array<String>) {
+  /*val answers: Set<Int> = setOf(5, 3, 8, 5)*/
+  /*val answers = setOf(5, 3, 8, 5)*/
+  val answers = mutableSetOf(5, 3, 8, 5)
+  answers.add(15)
+  answers.remove(3)
+  println(answers)
+  /*println(answers.contains(3)) // true*/
+
+  /*val set1 = setOf(1, 3, 5, 8)
+  val set2 = setOf(3, 5, 8, 9)
+  println(set1.intersect(set2))
+  println(set1.union(set2))
+  println(set1.subtract(set2))*/
 }

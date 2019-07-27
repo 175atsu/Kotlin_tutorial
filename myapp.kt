@@ -136,9 +136,9 @@
   println(bob.name)
   bob.sayHello() // hello
   bob.sayHi()  //[admini] hi bob
-} */
+}
 
-/* open class User(var name: String) { //コンストラクタ引数
+ open class User(var name: String) { //コンストラクタ引数
   var name = name
   var team = "red"
     //getter
@@ -159,16 +159,16 @@
     println("hi $name")
   }
   //User -> AdminUser
-} */
+}
 
-/*class AdminUser(name: String): User(name){
+class AdminUser(name: String): User(name){
   fun sayHello() {
     println("hello $name")
   }
   override fun sayHi() {
     println("[admin] hi $name")
   }
-}*/
+}
 
 
 //18
@@ -177,7 +177,7 @@
 // - protected そのクラス＋サブクラス
 // - private そのクラス
 
-/* class AdminUser(name: String): User(name) {
+class AdminUser(name: String): User(name) {
   fun sayHello() {
     println("hello $name")
   }
@@ -196,12 +196,12 @@ fun main(args: Array<String>) {
   println(bob.name)
   bob.sayHello()
   bob.sayHi()
-} */
+}
 
 //19クラスを拡張
 // 拡張
 
-/* fun User.sayHello() {
+fun User.sayHello() {
   println("hello $name")
 }
 
@@ -223,14 +223,14 @@ fun main(args: Array<String>) {
   tom.sayHello() // hello tom
   tom.sayHi() // hi tom
   println(tom.myName) // i am tom
-} */
+}
 
 
 //20抽象クラス
 // 抽象クラス -> 具象クラス
 // User -> Japanese, American
 
-/* abstract class User {
+abstract class User {
   abstract fun sayHi()
 }
 
@@ -324,18 +324,18 @@ fun main(args: Array<String>){
 
   val (x, y) = p1
   println("$x:$y")
-} */
+}
 
 
 //24List
 // Collection
-/*
+
 - List (Immutable/Mutable)
 - Set (Immutable/Mutable)
 - Map (Immutable/Mutable)
-*/
 
-/* fun main(args: Array<String>) {
+
+fun main(args: Array<String>) {
   //val sales: List<Int> = listOf(20, 30, 40)
   //val sales = listOf(20, 30, 40)
   val sales = mutableListOf(20, 30, 40)
@@ -345,28 +345,100 @@ fun main(args: Array<String>){
   for (sale in sales) {
     println(sale)
   }
-} */
+}
 
 //25Setを操作する
 // Collection
-/*
 - List (Immutable/Mutable)
 - Set (Immutable/Mutable)
 - Map (Immutable/Mutable)
-*/
+
 
 fun main(args: Array<String>) {
-  /*val answers: Set<Int> = setOf(5, 3, 8, 5)*/
-  /*val answers = setOf(5, 3, 8, 5)*/
+  /*val answers: Set<Int> = setOf(5, 3, 8, 5)
+  val answers = setOf(5, 3, 8, 5)
   val answers = mutableSetOf(5, 3, 8, 5)
   answers.add(15)
   answers.remove(3)
   println(answers)
-  /*println(answers.contains(3)) // true*/
+  println(answers.contains(3)) // true
 
-  /*val set1 = setOf(1, 3, 5, 8)
+  val set1 = setOf(1, 3, 5, 8)
   val set2 = setOf(3, 5, 8, 9)
   println(set1.intersect(set2))
   println(set1.union(set2))
-  println(set1.subtract(set2))*/
+  println(set1.subtract(set2))
+}
+
+//26Mapを操作
+// Collection
+
+- List (Immutable/Mutable)
+- Set (Immutable/Mutable)
+- Map (Immutable/Mutable)
+
+fun main(args: Array<String>) {
+  //val users: Map<String, Int> = mapOf("taguchi" to 40, "fkoji" to 80, "dotinstall" to 60)
+  val users = mapOf("taguchi" to 40, "fkoji" to 80, "dotinstall" to 60)
+  //val users = mutableMapOf("taguchi" to 40, "fkoji" to 80, "dotinstall" to 60)
+  println(users["taguchi"])  40
+  //users["taguchi"] = 55
+  println(users.size) // 3
+  println(users.keys)
+  println(users.values)
+  println(users.entries)
+}
+
+//27
+
+fun main(args: Array<String>) {
+  val prices = listOf(53.2, 48.2, 32.8)
+  prices
+    .map { n -> n * 1.08 } // 引数 -> 処理
+    .map { it * 1.08 }
+    .filter { n -> n > 50 }
+    .filter { it > 50 }
+    .forEach { println(it) }
+} */
+
+//28
+// 例外処理
+
+class MyException(message: String): Throwable(message)
+
+fun div(a: Int, b: Int) {
+  try {
+    if (b < 0) {
+      throw MyException("not minus!")
+    }
+    println(a / b)
+  } catch (e: ArithmeticException) {
+    println(e.message)
+  } catch (e: MyException) {
+    println(e.message)
+  } finally {
+    println(" -- end -- ")
+  }
+}
+
+fun main(args: Array<String>) {
+  div(3, 0)
+  div(3, -3)
+}
+
+// null
+
+fun main(args: Array<String>) {
+  /*val s: String = null*/
+  val s: String? = null // nullable
+  /*println(s)*/
+
+  /*if (s != null) {
+    println(s.length)
+  } else {
+    println(null)
+  }*/
+  /*println(s?.length)*/
+  /*println(s?.length ?: -1)*/
+  println(s!!.length)
 }
